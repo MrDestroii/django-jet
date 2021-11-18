@@ -10,6 +10,10 @@ Inline.prototype = {
         $inline.on('click', '.add-row a', function() {
             var $inlineItem = $inline.find('.inline-related:not(.empty-form)').last();
             $inline.trigger('inline-group-row:added', [$inlineItem]);
+
+            if(django) {
+                django.jQuery(document).trigger('formset:added', [$inlineItem])
+            }
         });
     },
     run: function() {
